@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
+    <title>Component State Switching</title>
+
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
       as="style"
@@ -23,13 +25,72 @@
   </head>
 
   <body data-sauce-page>
+    <h1>Component State Switching</h1>
+
     <div class="card" data-sauce-component>
       <state media="(min-width: 600px)" value="red" />
       <state media="(min-width: 800px)" value="blue" />
       <state media="(min-width: 1000px)" value="rounded" />
 
-      Whatevs man
+      Hello, World
     </div>
+
+    <h2>What is this?</h2>
+
+    <p>
+      For some initial context, read the discussion on
+      <a
+        href="https://github.com/RaspberryPiFoundation/sauce-design-system/issues/36"
+        >this Github issue</a
+      >.
+    </p>
+
+    <p>The component above has the following markup:</p>
+
+    <pre><code>&lt;div class="card" data-sauce-component&gt;
+  &lt;state media="(min-width: 600px)" value="red" /&gt;
+  &lt;state media="(min-width: 800px)" value="blue" /&gt;
+  &lt;state media="(min-width: 1000px)" value="rounded" /&gt;
+
+  Hello, World
+&lt;/div&gt;</code></pre>
+
+    <p>In this example, the box should...</p>
+
+    <ol>
+      <li>have a grey border when min-width < 600px</li>
+      <li>have a red border when min-width >= 600px</li>
+      <li>have a blue border when min-width >= 800px</li>
+      <li>have a green, rounded border when min-width >= 1000px</li>
+    </ol>
+
+    <h2>How does it work?</h2>
+
+    <p>
+      Taking inspiration from the <code>source</code> elements in HTML
+      specification, I've created a "custom" element for <code>state</code>.
+      It's not a <em>true</em> custom element, because the current spec of the
+      <code>window.customElements</code> API would make the HTML required for
+      our purposes too verbose.
+    </p>
+
+    <p>
+      I've also written the JavaScript necessary to observe the
+      <code>state</code> elements, attach its <code>media</code> attributes to
+      the window, and apply their <code>value</code> when the
+      <code>media</code> is triggered on the <code>window</code>.
+    </p>
+
+    <p>
+      However, due to the nature of the `window.matchMedia` API, it's not
+      possible to easily fall back to the other states if one no longer applies.
+    </p>
+
+    <p>
+      With that in mind I've written a <code>SauceStateMachine</code> class,
+      that allows a component to apply this fallback when a
+      <code>state</code> no longer applies.
+    </p>
 
     <script src="./sauce.js"></script>
   </body>
