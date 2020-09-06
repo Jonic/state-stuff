@@ -1,62 +1,46 @@
-class SaucePage {
-  constructor(body) {
-    this.body = body;
-    this.components = [];
-
-    this.initComponents();
-  }
-
-  initComponents() {
-    const elements = this.body.querySelectorAll("[data-sauce-component]");
-
-    for (const element of elements) {
-      const component = new SauceComponent(element);
-      this.components.push(component);
-    }
-  }
-}
-
 class SauceComponent {
   constructor(element) {
     this.element = element;
-    this.stateMachine = new SauceStateMachine(this);
+
+    if (this.hasState) {
+      new SauceStateMachine(this);
+    }
   }
 
   get data() {
     return this.element.dataset;
+  }
+
+  get hasState() {
+    return this.element.querySelectorAll("state").length > 0;
   }
 }
 
 class SauceStateMachine {
   constructor(component) {
     this.component = component;
+    this.initialized = false;
     this.states = [];
 
-    this.initStates();
+    const stateElements = this.component.element.querySelectorAll("state");
+
+    for (let index = 0; index < stateElements.length; index += 1) {
+      this.states.push(new SauceState(this, index, stateElements[index]));
+    }
+
     this.initialized = true;
   }
 
   cascadeState(fromIndex) {
     if (!this.initialized) return;
 
-    const newIndex = (fromIndex -= 1);
-
     this.unsetStateValue();
-
-    if (newIndex >= 0) {
-      this.invokeCallbackForState(newIndex);
-    }
-  }
-
-  initStates() {
-    const stateElements = this.component.element.querySelectorAll("state");
-
-    for (let index = 0; index < stateElements.length; index += 1) {
-      this.states.push(new SauceState(this, index, stateElements[index]));
-    }
+    this.invokeCallbackForState(fromIndex - 1);
   }
 
   invokeCallbackForState(index) {
+    if (index < 0) return;
+
     this.states[index].applyCascade();
   }
 
@@ -72,8 +56,8 @@ class SauceStateMachine {
 class SauceState {
   constructor(component, index, element) {
     this.component = component;
-    this.index = index;
     this.element = element;
+    this.index = index;
     this.query;
 
     this.attach();
@@ -102,13 +86,17 @@ class SauceState {
   }
 
   callback(event, state) {
-    if (!event.matches) {
-      state.component.cascadeState(state.index);
+    if (event.matches) {
+      state.component.setStateValue(state.value);
       return;
     }
 
-    state.component.setStateValue(state.value);
+    state.component.cascadeState(state.index);
   }
 }
 
-new SaucePage(document.querySelector("[data-sauce-page]"));
+const elements = document.querySelectorAll("[data-sauce-component]");
+
+for (const element of elements) {
+  new SauceComponent(element);
+}
