@@ -38,7 +38,8 @@
     <div class="card" data-sauce-component data-sauce-state="blue">
       <state media="(min-width: 600px)" value="red" />
       <state media="(min-width: 800px)" value="blue" />
-      <state media="(min-width: 1000px)" value="rounded" />
+      <state media="(min-width: 900px)" value="green" />
+      <state media="(min-width: 1000px)" value="green rounded" />
 
       Hello, World
     </div>
@@ -58,7 +59,8 @@
     <pre><code>&lt;div class="card" data-sauce-component&gt;
   &lt;state media="(min-width: 600px)" value="red" /&gt;
   &lt;state media="(min-width: 800px)" value="blue" /&gt;
-  &lt;state media="(min-width: 1000px)" value="rounded" /&gt;
+  &lt;state media="(min-width: 900px)" value="green" /&gt;
+  &lt;state media="(min-width: 1000px)" value="green rounded" /&gt;
 
   Hello, World
 &lt;/div&gt;</code></pre>
@@ -69,6 +71,7 @@
       <li>have a grey border when min-width < 600px</li>
       <li>have a red border when min-width >= 600px</li>
       <li>have a blue border when min-width >= 800px</li>
+      <li>have a green border when min-width >= 900px</li>
       <li>have a green, rounded border when min-width >= 1000px</li>
     </ol>
 

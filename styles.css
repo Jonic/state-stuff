@@ -52,15 +52,18 @@ p {
   padding: 1rem;
 }
 
-.card[data-sauce-state="red"] {
+.card[data-sauce-state*="red"] {
   --border-color: red;
 }
 
-.card[data-sauce-state="blue"] {
+.card[data-sauce-state*="blue"] {
   --border-color: blue;
 }
 
-.card[data-sauce-state="rounded"] {
+.card[data-sauce-state*="green"] {
   --border-color: green;
+}
+
+.card[data-sauce-state*="rounded"] {
   --border-radius: 1rem;
 }
