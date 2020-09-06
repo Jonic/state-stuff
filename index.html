@@ -76,14 +76,14 @@
 
     <p>
       Taking inspiration from the <code>&lt;source&gt;</code> elements in HTML
-      specification, I've created a "custom" element for
-      <code>&lt;state&gt;</code>. It's not a <em>true</em> custom element,
+      specification, I’ve created a “custom” element for
+      <code>&lt;state&gt;</code>. It’s not a <em>true</em> custom element,
       because the current spec of the <code>window.customElements</code> API
       would make the HTML required for our purposes too verbose.
     </p>
 
     <p>
-      I've also written the JavaScript necessary to observe the
+      I’ve also written the JavaScript necessary to observe the
       <code>&lt;state&gt;</code> elements, attach its
       <code>media</code> attributes to the window, and apply their
       <code>value</code> when the <code>media</code> is triggered on the
@@ -91,12 +91,13 @@
     </p>
 
     <p>
-      However, due to the nature of the `window.matchMedia` API, it's not
-      possible to easily fall back to the other states if one no longer applies.
+      However, due to the nature of the <code>window.matchMedia</code> API, it’s
+      not possible to easily fall back to the other states if one no longer
+      applies.
     </p>
 
     <p>
-      With that in mind I've written a <code>SauceStateMachine</code> class,
+      With that in mind I’ve written a <code>SauceStateMachine</code> class,
       that allows a component to apply this fallback when a
       <code>&lt;state&gt;</code> no longer applies.
     </p>
@@ -108,17 +109,15 @@
     </p>
 
     <p>
-      <strong>Please remember this is just a prototype</strong>. Nothing's been
-      decided, and if this is the direction we're taking, then the code isn't
+      <strong>Please remember this is just a prototype</strong>. Nothing’s been
+      decided, and if this is the direction we’re taking, then the code isn’t
       finalised either. I can already think of one optimisation this script
-      requires. Furthermore, we couldn't just go ahead and use this script on
-      the JAMstack. We'd need a
+      requires. Furthermore, we couldn’t just go ahead and use this script on
+      the JAMstack. We’d need a
       <a href="https://reactjs.org/docs/higher-order-components.html"
         >Higher Order Component</a
       >
-      to make this work with the least fuss. We should also reconsider our use
-      of the word `state`, which is already a concept in React. Possible
-      alternatives so far: proviso, shape, mood, footing, spirit.
+      to make this work with the least fuss.
     </p>
 
     <p>
@@ -131,9 +130,34 @@
 
     <p>
       In the absence of React or Rails, a plain-old JS module can be supplied to
-      browsers that understand modules. And browsers that don't support JS
+      browsers that understand modules. And browsers that don’t support JS
       modules will be considered the "baseline" experience, which is an
       acceptable fallback.
+    </p>
+
+    <p>
+      And on top of all <em>that</em>, we should also reconsider our use of the
+      word “state”, which is already a concept in React. Possible alternatives
+      so far:
+    </p>
+
+    <ul>
+      <li><code>proviso</code></li>
+      <li><code>shape</code></li>
+      <li><code>mood</code></li>
+      <li><code>footing</code></li>
+      <li><code>spirit</code></li>
+      <li><code>behavior</code></li>
+    </ul>
+
+    <h2>Anything to add?</h2>
+
+    <p>
+      Please comment on
+      <a
+        href="https://github.com/RaspberryPiFoundation/sauce-design-system/issues/36"
+        >the original Github issue</a
+      >, quoting this document where necessary.
     </p>
   </body>
 </html>
