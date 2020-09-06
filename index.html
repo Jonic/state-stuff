@@ -36,10 +36,10 @@
     <h1>Component State Switching</h1>
 
     <div class="card" data-sauce-component data-sauce-state="blue">
-      <state media="(min-width: 600px)" value="red" />
-      <state media="(min-width: 800px)" value="blue" />
+      <state media="(min-width: 500px)" value="red" />
+      <state media="(min-width: 700px)" value="blue" />
       <state media="(min-width: 900px)" value="green" />
-      <state media="(min-width: 1000px)" value="green rounded" />
+      <state media="(min-width: 1100px)" value="green rounded" />
 
       Hello, World
     </div>
@@ -57,10 +57,10 @@
     <p>The component above has the following markup:</p>
 
     <pre><code>&lt;div class="card" data-sauce-component&gt;
-  &lt;state media="(min-width: 600px)" value="red" /&gt;
-  &lt;state media="(min-width: 800px)" value="blue" /&gt;
+  &lt;state media="(min-width: 500px)" value="red" /&gt;
+  &lt;state media="(min-width: 700px)" value="blue" /&gt;
   &lt;state media="(min-width: 900px)" value="green" /&gt;
-  &lt;state media="(min-width: 1000px)" value="green rounded" /&gt;
+  &lt;state media="(min-width: 1100px)" value="green rounded" /&gt;
 
   Hello, World
 &lt;/div&gt;</code></pre>
@@ -68,11 +68,11 @@
     <p>In this example, the box should...</p>
 
     <ol>
-      <li>have a grey border when min-width < 600px</li>
-      <li>have a red border when min-width >= 600px</li>
-      <li>have a blue border when min-width >= 800px</li>
+      <li>have a grey border when min-width < 500px</li>
+      <li>have a red border when min-width >= 500px</li>
+      <li>have a blue border when min-width >= 700px</li>
       <li>have a green border when min-width >= 900px</li>
-      <li>have a green, rounded border when min-width >= 1000px</li>
+      <li>have a green, rounded border when min-width >= 1100px</li>
     </ol>
 
     <h2>How does it work?</h2>
