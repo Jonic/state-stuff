@@ -35,7 +35,7 @@
   <body>
     <h1>Component State Switching</h1>
 
-    <div class="card" data-sauce-component>
+    <div class="card" data-sauce-component data-sauce-state="blue">
       <state media="(min-width: 600px)" value="red" />
       <state media="(min-width: 800px)" value="blue" />
       <state media="(min-width: 1000px)" value="rounded" />
@@ -117,7 +117,8 @@
         >Higher Order Component</a
       >
       to make this work with the least fuss. We should also reconsider our use
-      of the word `state`, which is already a concept in React.
+      of the word `state`, which is already a concept in React. Possible
+      alternatives so far: proviso, shape, mood, footing, spirit.
     </p>
 
     <p>
