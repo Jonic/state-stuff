@@ -3,6 +3,12 @@
   <head>
     <title>Component State Switching</title>
 
+    <meta charset="utf-8" />
+    <meta content="Jonic Linley" name="author" />
+    <meta
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      name="viewport"
+    />
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
       as="style"
@@ -21,10 +27,12 @@
         rel="stylesheet"
       />
     </noscript>
+
     <link href="./styles.css" rel="stylesheet" />
+    <script defer src="./sauce.js"></script>
   </head>
 
-  <body data-sauce-page>
+  <body>
     <h1>Component State Switching</h1>
 
     <div class="card" data-sauce-component>
@@ -67,18 +75,19 @@
     <h2>How does it work?</h2>
 
     <p>
-      Taking inspiration from the <code>source</code> elements in HTML
-      specification, I've created a "custom" element for <code>state</code>.
-      It's not a <em>true</em> custom element, because the current spec of the
-      <code>window.customElements</code> API would make the HTML required for
-      our purposes too verbose.
+      Taking inspiration from the <code>&lt;source&gt;</code> elements in HTML
+      specification, I've created a "custom" element for
+      <code>&lt;state&gt;</code>. It's not a <em>true</em> custom element,
+      because the current spec of the <code>window.customElements</code> API
+      would make the HTML required for our purposes too verbose.
     </p>
 
     <p>
       I've also written the JavaScript necessary to observe the
-      <code>state</code> elements, attach its <code>media</code> attributes to
-      the window, and apply their <code>value</code> when the
-      <code>media</code> is triggered on the <code>window</code>.
+      <code>&lt;state&gt;</code> elements, attach its
+      <code>media</code> attributes to the window, and apply their
+      <code>value</code> when the <code>media</code> is triggered on the
+      <code>window</code>.
     </p>
 
     <p>
@@ -89,9 +98,26 @@
     <p>
       With that in mind I've written a <code>SauceStateMachine</code> class,
       that allows a component to apply this fallback when a
-      <code>state</code> no longer applies.
+      <code>&lt;state&gt;</code> no longer applies.
     </p>
 
-    <script src="./sauce.js"></script>
+    <p>
+      In its current state, the script comes in at around 1.3kB after
+      minification. Gzip/Brotli compression would allow us to inline this at the
+      bottom of our templates with negligable impact on page speed performance.
+    </p>
+
+    <p>
+      <strong>Please remember this is just a prototype</strong>. Nothing's been
+      decided, and if this is the direction we're taking, then the code isn't
+      finalised either. I can already think of one optimisation this script
+      requires. Furthermore, we couldn't just go ahead and use this script on
+      the JAMstack. We'd need a
+      <a href="https://reactjs.org/docs/higher-order-components.html"
+        >Higher Order Component</a
+      >
+      to make this work with the least fuss. We should also reconsider our use
+      of the word `state`, which is already a concept in React.
+    </p>
   </body>
 </html>
