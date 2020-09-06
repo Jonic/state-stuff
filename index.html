@@ -119,5 +119,20 @@
       to make this work with the least fuss. We should also reconsider our use
       of the word `state`, which is already a concept in React.
     </p>
+
+    <p>
+      Similarly, for Rails we would require a
+      <a href="https://github.com/github/view_component">ViewComponent</a> which
+      would perform the same job as the React HOC. Using config we can specify
+      the behavior of the elements in the page layout, rather than the
+      individual component styles.
+    </p>
+
+    <p>
+      In the absence of React or Rails, a plain-old JS module can be supplied to
+      browsers that understand modules. And browsers that don't support JS
+      modules will be considered the "baseline" experience, which is an
+      acceptable fallback.
+    </p>
   </body>
 </html>
