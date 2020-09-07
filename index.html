@@ -80,12 +80,25 @@
     </ol>
 
     <p>
+      Each of these represents a component that is defined in the component's
+      styles. A state could be a cosmetic change (eg "dark mode"), or it could
+      represent a component's internal layout changes (cards with a
+      horizontal/vertical layout).
+    </p>
+
+    <p>
       These <code>&lt;state&gt;</code> elements are defined in the application
       layout, and are not included with the component when you get it from the
       pattern library. They allow engineers to control the state behavior of
       components in specific contexts, rather than the components having all
       that decision making built in at a level far-removed from its
       implementation.
+    </p>
+
+    <p>
+      I'm in no way advocating for blurring the separation of concerns between
+      document, style, and behavior. I do however think we can link them
+      together more neatly.
     </p>
 
     <h2>How does it work?</h2>
