@@ -242,5 +242,53 @@
       any ideas just yet, but I'd consider this feature as absolutely required
       for a v1 release.
     </p>
+
+    <h3>Multiple query types</h3>
+
+    <p>
+      Currently the "fallback" behavior only works if all of your media queries
+      are checking for the same value. For example, the `min-width` checks in
+      our example.
+    </p>
+
+    <p>
+      Consider that a component may require some state changes for min-width,
+      but also includes state options for example:
+    </p>
+
+    <code>
+      <pre>
+&lt;state media="(prefers-color-scheme: dark)" value="dark-mode" /&gt;
+&lt;state media="(min-width: 500px)" value="red" /&gt;
+&lt;state media="(min-width: 700px)" value="blue" /&gt;</pre
+      >
+    </code>
+
+    <p>
+      In this scenario, the <code>dark-mode</code> state will be removed once
+      the next media-query is satisfied: <code>min-width: 500px</code>. We would
+      need a way to avoid this.
+    </p>
+
+    <p>
+      Similarly, if the browser width dips below 500px, the next state checked
+      will be the <code>prefers-color-scheme</code> media query, which doesn't
+      bear any real relation to the state the preceeded it.
+    </p>
+
+    <p>
+      The difficulty here is that our current ways of delivering responsive
+      designs is stacking ever-wider media queries atop one another, when in
+      fact actual responsive design can encompass many other aspects of the
+      user's browser context. Our new tools should aim to move away from solely
+      <code>min-width</code> ways of thinking.
+    </p>
+
+    <h3>Accessibility</h3>
+
+    <p>
+      We must ensure that the <code>state</code> elements don't intefere with
+      assisstive technologies.
+    </p>
   </body>
 </html>
