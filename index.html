@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
+    <script>
+      document.documentElement.classList.add("js");
+      document.documentElement.classList.remove("no-js");
+    </script>
     <title>Component State Switching</title>
 
     <meta charset="utf-8" />
@@ -161,6 +165,82 @@
         href="https://github.com/RaspberryPiFoundation/sauce-design-system/issues/36"
         >the original Github issue</a
       >, quoting this document where necessary.
+    </p>
+
+    <h2>TODO:</h2>
+
+    <h3>ADR</h3>
+
+    <p>Are we doing this? Why/why not?</p>
+
+    <h3>MVP</h3>
+
+    <p>What is it? Where does all this live? How will it be documented?</p>
+
+    <h3>Page Load</h3>
+
+    <p>
+      How can we only apply the one state we need on page load? Currently it
+      looks through each state and applies it if the media-query is a match. In
+      our example above, if your browser window is over 1100px wide on load,
+      this happens:
+    </p>
+
+    <ol>
+      <li>Render default state (as if no JavaScript)</li>
+      <li><code>SauceComponent</code> kicks in.</li>
+      <li>First state is applied, because min-width > 500px</li>
+      <li>
+        First state is removed, second state is applied, because min-width >
+        700px
+      </li>
+      <li>
+        Second state is removed, third state is applied, because min-width >
+        900px
+      </li>
+      <li>
+        Third state is removed, fourth state is applied, because min-width >
+        1100px
+      </li>
+    </ol>
+
+    <p>What <em>should</em> happen is this:</p>
+
+    <ol>
+      <li>Render default state (as if no JavaScript)</li>
+      <li><code>SauceComponent</code> kicks in.</li>
+      <li>Fourth state is applied, because min-width > 1100px</li>
+    </ol>
+
+    <h3>DOM Updates</h3>
+
+    <p>
+      We'll need to ensure that components are correctly handled when added to
+      the DOM.
+    </p>
+
+    <p>
+      We should also figure out what happens when a
+      <code>SauceStateMachine</code> is applied to a component and some other
+      piece of JavaScript attempts to explicitly override the
+      <code>data-sauce-state</code> value.
+    </p>
+
+    <h3>Reducing repetition in the markup</h3>
+
+    <p>
+      If we have multiple copies of the same component with the same state
+      rules, we should figured out how to provide the state rules in place
+      common to all of them, rather than repeating every the
+      <code>state</code> elements for every single instance. This would work,
+      but would be sub-optimal.
+    </p>
+
+    <p>
+      There are several potential solutions to this issue, which will have a
+      knock-on effect to the performance of the utility script, so I won't posit
+      any ideas just yet, but I'd consider this feature as absolutely required
+      for a v1 release.
     </p>
   </body>
 </html>
