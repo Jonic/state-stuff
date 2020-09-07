@@ -82,11 +82,13 @@
     <h2>How does it work?</h2>
 
     <p>
-      Taking inspiration from the <code>&lt;source&gt;</code> elements in HTML
-      specification, I’ve created a “custom” element for
-      <code>&lt;state&gt;</code>. It’s not a <em>true</em> custom element,
-      because the current spec of the <code>window.customElements</code> API
-      would make the HTML required for our purposes too verbose.
+      Taking inspiration from the <code>&lt;source&gt;</code> elements in the
+      HTML specification (as used in the <code>audio</code>,
+      <code>picture</code>, and <code>video</code> elements), I’ve created a
+      “custom” element for <code>&lt;state&gt;</code>. It’s not a
+      <em>true</em> custom element, because the current spec of the
+      <code>window.customElements</code> API would make the HTML required for
+      our purposes too verbose.
     </p>
 
     <p>
@@ -138,7 +140,7 @@
     <p>
       In the absence of React or Rails, a plain-old JS module can be supplied to
       browsers that understand modules. And browsers that don’t support JS
-      modules will be considered the "baseline" experience, which is an
+      modules will be considered the “baseline” experience, which is an
       acceptable fallback.
     </p>
 
@@ -215,7 +217,7 @@
     <h3>DOM Updates</h3>
 
     <p>
-      We'll need to ensure that components are correctly handled when added to
+      We’ll need to ensure that components are correctly handled when added to
       the DOM.
     </p>
 
@@ -238,8 +240,8 @@
 
     <p>
       There are several potential solutions to this issue, which will have a
-      knock-on effect to the performance of the utility script, so I won't posit
-      any ideas just yet, but I'd consider this feature as absolutely required
+      knock-on effect to the performance of the utility script, so I won’t posit
+      any ideas just yet, but I’d consider this feature as absolutely required
       for a v1 release.
     </p>
 
@@ -255,9 +257,9 @@
     <h3>Multiple query types</h3>
 
     <p>
-      Currently the "fallback" behavior only works if all of your media queries
-      are checking for the same value. For example, the `min-width` checks in
-      our example.
+      Currently the “fallback” behavior only works if all of your media queries
+      are checking for the same value. For example, the
+      <code>min-width</code> checks in our example.
     </p>
 
     <p>
@@ -281,7 +283,7 @@
 
     <p>
       Similarly, if the browser width dips below 500px, the next state checked
-      will be the <code>prefers-color-scheme</code> media query, which doesn't
+      will be the <code>prefers-color-scheme</code> media query, which doesn’t
       bear any real relation to the state the preceeded it.
     </p>
 
@@ -289,14 +291,14 @@
       The difficulty here is that our current ways of delivering responsive
       designs is stacking ever-wider media queries atop one another, when in
       fact actual responsive design can encompass many other aspects of the
-      user's browser context. Our new tools should aim to move away from solely
+      user’s browser context. Our new tools should aim to move away from solely
       <code>min-width</code> ways of thinking.
     </p>
 
     <h3>Accessibility</h3>
 
     <p>
-      We must ensure that the <code>state</code> elements don't intefere with
+      We must ensure that the <code>state</code> elements don’t intefere with
       assisstive technologies.
     </p>
   </body>
