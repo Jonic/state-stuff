@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <script>
+      document.documentElement.classList.add("js");
+      document.documentElement.classList.remove("no-js");
+    </script>
+    <title>Component State Switching</title>
+
+    <meta charset="utf-8" />
+    <meta content="Jonic Linley" name="author" />
+    <meta
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      name="viewport"
+    />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      as="style"
+      href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&display=swap"
+      rel="preload"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&display=swap"
+      media="print"
+      onload="this.media='all'"
+      rel="stylesheet"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <link href="styles.css" rel="stylesheet" />
+    <script defer src="sauce.js"></script>
+  </head>
+
+  <body>
+    <h1>Card Grid Example</h1>
+
+    <section class="sl-grid" data-sauce-component>
+      <state media="(min-width: 900px)" value="three-columns"></state>
+
+      <div class="sc-rp-card" data-sauce-component>
+        <state media="(min-width: 500px)" value="horizontal"></state>
+        <state media="(min-width: 900px)" value="vertical"></state>
+
+        <div class="sc-rp-card__summary">
+          <h3 class="sc-rp-card__heading">
+            <a class="sc-rp-card__link" href="#">Learn with Scratch</a>
+          </h3>
+
+          <p class="sc-rp-card__excerpt">
+            Learn how to use Scratch to create musical instruments, animations,
+            games and other interactive apps.
+          </p>
+        </div>
+
+        <div class="sc-rp-card__figure">
+          <img
+            alt="Don't forget the alt attribute!"
+            class="sc-rp-card__image"
+            src="./images/1.jpg"
+            width="300"
+            height="180"
+          />
+        </div>
+      </div>
+
+      <div class="sc-rp-card" data-sauce-component>
+        <state media="(min-width: 500px)" value="horizontal"></state>
+        <state media="(min-width: 900px)" value="vertical"></state>
+
+        <div class="sc-rp-card__summary">
+          <h3 class="sc-rp-card__heading">
+            <a class="sc-rp-card__link" href="#">Make websites</a>
+          </h3>
+
+          <p class="sc-rp-card__excerpt">
+            Learn how to build and style your own web pages using HTML and CSS.
+          </p>
+        </div>
+
+        <div class="sc-rp-card__figure">
+          <img
+            alt="Don't forget the alt attribute!"
+            class="sc-rp-card__image"
+            src="./images/2.jpg"
+            width="300"
+            height="180"
+          />
+        </div>
+      </div>
+
+      <div class="sc-rp-card" data-sauce-component>
+        <state media="(min-width: 500px)" value="horizontal"></state>
+        <state media="(min-width: 900px)" value="vertical"></state>
+
+        <div class="sc-rp-card__summary">
+          <h3 class="sc-rp-card__heading">
+            <a class="sc-rp-card__link" href="#">Code in Python</a>
+          </h3>
+
+          <p class="sc-rp-card__excerpt">
+            Python is a widely used, general purpose, text-based programming
+            language.
+          </p>
+        </div>
+
+        <div class="sc-rp-card__figure">
+          <img
+            alt="Don't forget the alt attribute!"
+            class="sc-rp-card__image"
+            src="./images/3.jpg"
+            width="300"
+            height="180"
+          />
+        </div>
+      </div>
+
+      <div class="sc-rp-card" data-sauce-component>
+        <state media="(min-width: 500px)" value="horizontal"></state>
+        <state media="(min-width: 900px)" value="vertical"></state>
+
+        <div class="sc-rp-card__summary">
+          <h3 class="sc-rp-card__heading">
+            <a class="sc-rp-card__link" href="#">Learn with Scratch</a>
+          </h3>
+
+          <p class="sc-rp-card__excerpt">
+            Learn how to use Scratch to create musical instruments, animations,
+            games and other interactive apps.
+          </p>
+        </div>
+
+        <div class="sc-rp-card__figure">
+          <img
+            alt="Don't forget the alt attribute!"
+            class="sc-rp-card__image"
+            src="./images/4.jpg"
+            width="300"
+            height="180"
+          />
+        </div>
+      </div>
+
+      <div class="sc-rp-card" data-sauce-component>
+        <state media="(min-width: 500px)" value="horizontal"></state>
+        <state media="(min-width: 900px)" value="vertical"></state>
+
+        <div class="sc-rp-card__summary">
+          <h3 class="sc-rp-card__heading">
+            <a class="sc-rp-card__link" href="#">Make websites</a>
+          </h3>
+
+          <p class="sc-rp-card__excerpt">
+            Learn how to build and style your own web pages using HTML and CSS.
+          </p>
+        </div>
+
+        <div class="sc-rp-card__figure">
+          <img
+            alt="Don't forget the alt attribute!"
+            class="sc-rp-card__image"
+            src="./images/5.jpg"
+            width="300"
+            height="180"
+          />
+        </div>
+      </div>
+
+      <div class="sc-rp-card" data-sauce-component>
+        <state media="(min-width: 500px)" value="horizontal"></state>
+        <state media="(min-width: 900px)" value="vertical"></state>
+
+        <div class="sc-rp-card__summary">
+          <h3 class="sc-rp-card__heading">
+            <a class="sc-rp-card__link" href="#">Code in Python</a>
+          </h3>
+
+          <p class="sc-rp-card__excerpt">
+            Python is a widely used, general purpose, text-based programming
+            language.
+          </p>
+        </div>
+
+        <div class="sc-rp-card__figure">
+          <img
+            alt="Don't forget the alt attribute!"
+            class="sc-rp-card__image"
+            src="./images/6.jpg"
+            width="300"
+            height="180"
+          />
+        </div>
+      </div>
+
+      <div class="sc-rp-card" data-sauce-component>
+        <state media="(min-width: 500px)" value="horizontal"></state>
+        <state media="(min-width: 900px)" value="vertical"></state>
+
+        <div class="sc-rp-card__summary">
+          <h3 class="sc-rp-card__heading">
+            <a class="sc-rp-card__link" href="#">Learn with Scratch</a>
+          </h3>
+
+          <p class="sc-rp-card__excerpt">
+            Learn how to use Scratch to create musical instruments, animations,
+            games and other interactive apps.
+          </p>
+        </div>
+
+        <div class="sc-rp-card__figure">
+          <img
+            alt="Don't forget the alt attribute!"
+            class="sc-rp-card__image"
+            src="./images/7.jpg"
+            width="300"
+            height="180"
+          />
+        </div>
+      </div>
+
+      <div class="sc-rp-card" data-sauce-component>
+        <state media="(min-width: 500px)" value="horizontal"></state>
+        <state media="(min-width: 900px)" value="vertical"></state>
+
+        <div class="sc-rp-card__summary">
+          <h3 class="sc-rp-card__heading">
+            <a class="sc-rp-card__link" href="#">Make websites</a>
+          </h3>
+
+          <p class="sc-rp-card__excerpt">
+            Learn how to build and style your own web pages using HTML and CSS.
+          </p>
+        </div>
+
+        <div class="sc-rp-card__figure">
+          <img
+            alt="Don't forget the alt attribute!"
+            class="sc-rp-card__image"
+            src="./images/8.jpg"
+            width="300"
+            height="180"
+          />
+        </div>
+      </div>
+
+      <div class="sc-rp-card" data-sauce-component>
+        <state media="(min-width: 500px)" value="horizontal"></state>
+        <state media="(min-width: 900px)" value="vertical"></state>
+
+        <div class="sc-rp-card__summary">
+          <h3 class="sc-rp-card__heading">
+            <a class="sc-rp-card__link" href="#">Code in Python</a>
+          </h3>
+
+          <p class="sc-rp-card__excerpt">
+            Python is a widely used, general purpose, text-based programming
+            language.
+          </p>
+        </div>
+
+        <div class="sc-rp-card__figure">
+          <img
+            alt="Don't forget the alt attribute!"
+            class="sc-rp-card__image"
+            src="./images/9.jpg"
+            width="300"
+            height="180"
+          />
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
