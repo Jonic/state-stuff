@@ -12,7 +12,11 @@ class SauceComponent {
   }
 
   get hasState() {
-    return this.element.querySelectorAll("state").length > 0;
+    return this.stateElements.length > 0;
+  }
+
+  get stateElements() {
+    return this.element.querySelectorAll(":scope > state");
   }
 }
 
@@ -22,7 +26,7 @@ class SauceStateMachine {
     this.initialized = false;
     this.states = [];
 
-    const stateElements = this.component.element.querySelectorAll("state");
+    const stateElements = this.component.stateElements;
 
     for (let index = 0; index < stateElements.length; index += 1) {
       this.states.push(new SauceState(this, index, stateElements[index]));
