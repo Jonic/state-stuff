@@ -37,7 +37,121 @@ p {
   max-width: 50ch;
 }
 
-.card {
+state {
+  display: none;
+}
+
+.sl-grid {
+  display: grid;
+  grid-gap: 2.4rem;
+}
+
+.sl-grid[data-sauce-state*="two-columns"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.sl-grid[data-sauce-state*="three-columns"] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.sl-grid[data-sauce-state*="four-columns"] {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.sl-grid[data-sauce-state*="five-columns"] {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.sl-grid[data-sauce-state*="six-columns"] {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/*
+  CARD EXAMPLE
+*/
+.sc-rp-card {
+  background-color: #f0f8ff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-grow: 1;
+  height: 100%;
+  margin-bottom: 2.4rem;
+  max-width: 50rem;
+  overflow: hidden;
+  position: relative;
+  transition-duration: 100ms;
+  transition-property: box-shadow;
+  transition-timing-function: ease-in-out;
+}
+
+.sc-rp-card:hover,
+.sc-rp-card:focus-within {
+  box-shadow: 0 0 2rem 0 rgba(0, 72, 129, 0.2);
+}
+
+.sc-rp-card__summary {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 2.4rem;
+}
+
+.sc-rp-card__heading {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 0 0 1.2rem;
+  max-width: 100%;
+}
+
+.sc-rp-card__link,
+.sc-rp-card__link:visited {
+  color: rgb(0, 72, 129);
+  text-decoration: none;
+}
+
+.sc-rp-card__link:focus,
+.sc-rp-card:focus-within .sc-rp-card__link,
+.sc-rp-card:hover .sc-rp-card__link {
+  text-decoration: underline;
+}
+
+.sc-rp-card__link::after {
+  bottom: 0;
+  content: " ";
+  display: block;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.sc-rp-card__excerpt {
+  margin: 0;
+}
+
+.sc-rp-card__figure {
+  display: block;
+  min-width: 40%;
+}
+
+.sc-rp-card__image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.sc-rp-card[data-sauce-state*="horizontal"] {
+  flex-direction: row-reverse;
+  max-width: 100%;
+}
+
+/*
+  TEST COMPONENT
+*/
+
+.component-test {
   --border-color: darkgrey;
   --border-radius: 0;
 
@@ -52,18 +166,18 @@ p {
   padding: 1rem;
 }
 
-.card[data-sauce-state*="red"] {
+.component-test[data-sauce-state*="red"] {
   --border-color: red;
 }
 
-.card[data-sauce-state*="blue"] {
+.component-test[data-sauce-state*="blue"] {
   --border-color: blue;
 }
 
-.card[data-sauce-state*="green"] {
+.component-test[data-sauce-state*="green"] {
   --border-color: green;
 }
 
-.card[data-sauce-state*="rounded"] {
+.component-test[data-sauce-state*="rounded"] {
   --border-radius: 1rem;
 }
