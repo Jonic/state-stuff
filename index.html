@@ -39,11 +39,13 @@
   <body>
     <h1>Component State Switching</h1>
 
-    <div class="card" data-sauce-component data-sauce-state="blue">
-      <state media="(min-width: 500px)" value="red" />
-      <state media="(min-width: 700px)" value="blue" />
-      <state media="(min-width: 900px)" value="green" />
-      <state media="(min-width: 1100px)" value="green rounded" />
+    <p><a href="./cards.html">View an example using cards!</a></p>
+
+    <div class="component-test" data-sauce-component>
+      <state media="(min-width: 500px)" value="red"></state>
+      <state media="(min-width: 700px)" value="blue"></state>
+      <state media="(min-width: 900px)" value="green"></state>
+      <state media="(min-width: 1100px)" value="green rounded"></state>
 
       Hello, World
     </div>
@@ -60,11 +62,11 @@
 
     <p>The component above has the following markup:</p>
 
-    <pre><code>&lt;div class="card" data-sauce-component&gt;
-  &lt;state media="(min-width: 500px)" value="red" /&gt;
-  &lt;state media="(min-width: 700px)" value="blue" /&gt;
-  &lt;state media="(min-width: 900px)" value="green" /&gt;
-  &lt;state media="(min-width: 1100px)" value="green rounded" /&gt;
+    <pre><code>&lt;div class="component-test" data-sauce-component&gt;
+  &lt;state media="(min-width: 500px)" value="red"&gt;&lt;/state&gt;
+  &lt;state media="(min-width: 700px)" value="blue"&gt;&lt;/state&gt;
+  &lt;state media="(min-width: 900px)" value="green"&gt;&lt;/state&gt;
+  &lt;state media="(min-width: 1100px)" value="green rounded"&gt;&lt;/state&gt;
 
   Hello, World
 &lt;/div&gt;</code></pre>
@@ -291,9 +293,9 @@
 
     <code>
       <pre>
-&lt;state media="(prefers-color-scheme: dark)" value="dark-mode" /&gt;
-&lt;state media="(min-width: 500px)" value="red" /&gt;
-&lt;state media="(min-width: 700px)" value="blue" /&gt;</pre
+&lt;state media="(prefers-color-scheme: dark)" value="dark-mode"&gt;&lt;/state&gt;
+&lt;state media="(min-width: 500px)" value="red"&gt;&lt;/state&gt;
+&lt;state media="(min-width: 700px)" value="blue"&gt;&lt;/state&gt;</pre
       >
     </code>
 
