@@ -1,5 +1,7 @@
 # Stateful Components
 
+Note: You can [view a live demo](https://state-stuff.100yen.co.uk) on my website.
+
 This demo outlines a method of differing a component's display state, without necessarily tying it direct to the browser's `min-width` in your CSS. The method was first discussed in [this Github issue](https://github.com/RaspberryPiFoundation/sauce-design-system/issues/36).
 
 The objective is to allow components to display in pre-defined states, but to be able to control those which of those states applies in our layout.
