@@ -37,7 +37,8 @@ p {
   max-width: 50ch;
 }
 
-state {
+state,
+state-controller {
   display: none;
 }
 

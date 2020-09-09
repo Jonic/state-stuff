@@ -1,44 +1,67 @@
 class SauceComponent {
   constructor(element) {
     this.element = element;
-
-    if (this.hasState) {
-      new SauceStateMachine(this);
-    }
   }
 
   get data() {
     return this.element.dataset;
   }
 
-  get hasState() {
-    return this.stateElements.length > 0;
+  setState(value) {
+    this.data.sauceState = value;
   }
 
-  get stateElements() {
-    return this.element.querySelectorAll(":scope > state");
+  unsetState() {
+    delete this.data.sauceState;
   }
 }
 
-class SauceStateMachine {
-  constructor(component) {
-    this.component = component;
+class SauceStateController {
+  constructor(controller) {
     this.initialized = false;
-    this.states = [];
 
-    const stateElements = this.component.stateElements;
+    this.components;
+    this.controller = controller;
+    this.states;
 
-    for (let index = 0; index < stateElements.length; index += 1) {
-      this.states.push(new SauceState(this, index, stateElements[index]));
-    }
+    this.initComponents();
+    this.initStates();
 
     this.initialized = true;
+  }
+
+  get componentElements() {
+    if (this.controller.tagName === "STATE-CONTROLLER") {
+      return Array.from(
+        this.controller.parentNode.querySelectorAll(
+          `:scope > .${this.controller.getAttribute("for")}`
+        )
+      );
+    }
+
+    return [this.controller];
+  }
+
+  get stateElements() {
+    return Array.from(this.controller.querySelectorAll(":scope > state"));
+  }
+
+  initComponents() {
+    this.components = this.componentElements.map(
+      (element) => new SauceComponent(element)
+    );
+  }
+
+  initStates() {
+    this.states = this.stateElements.map(
+      (element, index) => new SauceState({ controller: this, element, index })
+    );
   }
 
   cascadeState(fromIndex) {
     if (!this.initialized) return;
 
-    this.unsetStateValue();
+    this.unsetState();
     this.invokeCallbackForState(fromIndex - 1);
   }
 
@@ -48,18 +71,18 @@ class SauceStateMachine {
     this.states[index].applyCascade();
   }
 
-  setStateValue(value) {
-    this.component.data.sauceState = value;
+  setState(value) {
+    this.components.forEach((component) => component.setState(value));
   }
 
-  unsetStateValue() {
-    delete this.component.data.sauceState;
+  unsetState() {
+    this.components.forEach((component) => component.unsetState());
   }
 }
 
 class SauceState {
-  constructor(component, index, element) {
-    this.component = component;
+  constructor({ controller, element, index }) {
+    this.controller = controller;
     this.element = element;
     this.index = index;
     this.query;
@@ -91,16 +114,18 @@ class SauceState {
 
   callback(event, state) {
     if (event.matches) {
-      state.component.setStateValue(state.value);
+      state.controller.setState(state.value);
       return;
     }
 
-    state.component.cascadeState(state.index);
+    state.controller.cascadeState(state.index);
   }
 }
 
-const elements = document.querySelectorAll("[data-sauce-component]");
+const stateControllers = document.querySelectorAll(
+  "[data-sauce-stateful-component], state-controller"
+);
 
-for (const element of elements) {
-  new SauceComponent(element);
+for (const stateController of stateControllers) {
+  new SauceStateController(stateController);
 }
