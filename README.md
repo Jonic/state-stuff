@@ -78,6 +78,10 @@ States will be defined in Sauce components. Any component states will be documen
 
 The advantage being that we allow engineers to control the state behavior of components in specific contexts, rather than the components having all that decision making built in at a level far-removed from its implementation. A component in Sauce has no idea where it will be used, nor should it. All a component should do is what the component design dictates, and nothing more.
 
+## Can we use this on non-Sauce components?
+
+Sure. If you author your application components in the same way, there's no reason you can't use this exact same method on application-specific components. In fact I would actively encourage you to do so.
+
 ## What other benefits are there?
 
 We won't have to spend time designing "in between" states in Figma. Build the small one, and apply state to the layouts as you work your way up to our maximum container width.
@@ -97,6 +101,14 @@ This is also a deliberate attempt by me to stop us thinking that we can solve an
 Each element that requires a new state receives a single DOM manipulation to edit an attribute, so it executes ridiculously quickly.
 
 The browser does then have to repaint all the elements that have changed state, but it would have to do that if we matched a media query in the CSS anyway.
+
+## How future-proof is this?
+
+Well I can't exactly see into the future, I'm afraid. I'm not doing anything particularly clever with the tech, and HTML/CSS/JS are going to be around for a long time.
+
+It's more likely that we'll be able to EOL this technique and adopt container queries (or whatever we end up with). During that transitionary period we could continue to use stateful components without worrying about browsers no longer supporting the things we need to enable the technique.
+
+I also don't intend to use any third-patry npm packages. Once we have this in place, it should sit steady as a rock. It's deliberately built that way.
 
 ## Can I use the CSS states without using this script?
 
