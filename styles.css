@@ -45,6 +45,8 @@ state-controller {
 .sl-grid {
   display: grid;
   grid-gap: 2.4rem;
+  margin: 0 auto;
+  max-width: 1300px;
 }
 
 .sl-grid[data-sauce-state*="two-columns"] {
