@@ -37,71 +37,73 @@
   </head>
 
   <body>
-    <h1>Component State Switching</h1>
+    <div class="container">
+      <h1>Component State Switching</h1>
 
-    <ul>
-      <li>
+      <ul>
+        <li>
+          <a href="https://github.com/Jonic/state-stuff"
+            >Read an explanation in the repository</a
+          >
+        </li>
+        <li><a href="./cards.html">View an example using cards!</a></li>
+      </ul>
+
+      <div class="component-test" data-sauce-stateful-component>
+        <state media="(min-width: 500px)" value="red"></state>
+        <state media="(min-width: 700px)" value="blue"></state>
+        <state media="(min-width: 900px)" value="green"></state>
+        <state media="(min-width: 1100px)" value="green rounded"></state>
+
+        Hello, World
+      </div>
+
+      <h2>What is this?</h2>
+
+      <p>
+        For some initial context, read the discussion on
+        <a
+          href="https://github.com/RaspberryPiFoundation/sauce-design-system/issues/36"
+          >this Github issue</a
+        >.
+      </p>
+
+      <p>The component above has the following markup:</p>
+
+      <pre><code>&lt;div class="component-test" data-sauce-stateful-component&gt;
+    &lt;state media="(min-width: 500px)" value="red"&gt;&lt;/state&gt;
+    &lt;state media="(min-width: 700px)" value="blue"&gt;&lt;/state&gt;
+    &lt;state media="(min-width: 900px)" value="green"&gt;&lt;/state&gt;
+    &lt;state media="(min-width: 1100px)" value="green rounded"&gt;&lt;/state&gt;
+
+    Hello, World
+  &lt;/div&gt;</code></pre>
+
+      <p>When resizing the browser window, the box should...</p>
+
+      <ol>
+        <li>have a grey border when min-width < 500px</li>
+        <li>have a red border when min-width >= 500px</li>
+        <li>have a blue border when min-width >= 700px</li>
+        <li>have a green border when min-width >= 900px</li>
+        <li>have a green, rounded border when min-width >= 1100px</li>
+      </ol>
+
+      <p>
+        To find out more about how this works, have a look at
         <a href="https://github.com/Jonic/state-stuff"
-          >Read an explanation in the repository</a
-        >
-      </li>
-      <li><a href="./cards.html">View an example using cards!</a></li>
-    </ul>
+          >the repository's README file</a
+        >.
+      </p>
 
-    <div class="component-test" data-sauce-stateful-component>
-      <state media="(min-width: 500px)" value="red"></state>
-      <state media="(min-width: 700px)" value="blue"></state>
-      <state media="(min-width: 900px)" value="green"></state>
-      <state media="(min-width: 1100px)" value="green rounded"></state>
+      <p>
+        Here's the entire minified script that powers this. It's just under 2kB,
+        before compression:
+      </p>
 
-      Hello, World
+      <textarea rows="30" cols="80">
+  class SauceComponent{constructor(a){this.element=a}get data(){return this.element.dataset}setState(a){this.data.sauceState=a}unsetState(){delete this.data.sauceState}}class SauceStateController{constructor(a){this.initialized=!1,this.components,this.controller=a,this.states,this.initComponents(),this.initStates(),this.initialized=!0}get componentElements(){return"STATE-CONTROLLER"===this.controller.tagName?Array.from(this.controller.parentNode.querySelectorAll(`:scope > .${this.controller.getAttribute("for")}`)):[this.controller]}get stateElements(){return Array.from(this.controller.querySelectorAll(":scope > state"))}initComponents(){this.components=this.componentElements.map(a=>new SauceComponent(a))}initStates(){this.states=this.stateElements.map((a,b)=>new SauceState({controller:this,element:a,index:b}))}cascadeState(a){this.initialized&&(this.unsetState(),this.invokeCallbackForState(a-1))}invokeCallbackForState(a){0>a||this.states[a].applyCascade()}setState(a){this.components.forEach(b=>b.setState(a))}unsetState(){this.components.forEach(a=>a.unsetState())}}class SauceState{constructor({controller:a,element:b,index:c}){this.controller=a,this.element=b,this.index=c,this.query,this.attach(),this.apply()}get media(){return this.element.getAttribute("media")}get value(){return this.element.getAttribute("value")}attach(){this.query=window.matchMedia(this.media),this.query.addListener(a=>this.callback(a,this))}apply(){this.callback(this.query,this)}applyCascade(){this.callback({matches:!0},this)}callback(a,b){return a.matches?void b.controller.setState(b.value):void b.controller.cascadeState(b.index)}}const stateControllers=document.querySelectorAll("[data-sauce-stateful-component], state-controller");for(const a of stateControllers)new SauceStateController(a);</textarea
+      >
     </div>
-
-    <h2>What is this?</h2>
-
-    <p>
-      For some initial context, read the discussion on
-      <a
-        href="https://github.com/RaspberryPiFoundation/sauce-design-system/issues/36"
-        >this Github issue</a
-      >.
-    </p>
-
-    <p>The component above has the following markup:</p>
-
-    <pre><code>&lt;div class="component-test" data-sauce-stateful-component&gt;
-  &lt;state media="(min-width: 500px)" value="red"&gt;&lt;/state&gt;
-  &lt;state media="(min-width: 700px)" value="blue"&gt;&lt;/state&gt;
-  &lt;state media="(min-width: 900px)" value="green"&gt;&lt;/state&gt;
-  &lt;state media="(min-width: 1100px)" value="green rounded"&gt;&lt;/state&gt;
-
-  Hello, World
-&lt;/div&gt;</code></pre>
-
-    <p>When resizing the browser window, the box should...</p>
-
-    <ol>
-      <li>have a grey border when min-width < 500px</li>
-      <li>have a red border when min-width >= 500px</li>
-      <li>have a blue border when min-width >= 700px</li>
-      <li>have a green border when min-width >= 900px</li>
-      <li>have a green, rounded border when min-width >= 1100px</li>
-    </ol>
-
-    <p>
-      To find out more about how this works, have a look at
-      <a href="https://github.com/Jonic/state-stuff"
-        >the repository's README file</a
-      >.
-    </p>
-
-    <p>
-      Here's the entire minified script that powers this. It's just under 2kB,
-      before compression:
-    </p>
-
-    <textarea rows="30" cols="80">
-class SauceComponent{constructor(a){this.element=a}get data(){return this.element.dataset}setState(a){this.data.sauceState=a}unsetState(){delete this.data.sauceState}}class SauceStateController{constructor(a){this.initialized=!1,this.components,this.controller=a,this.states,this.initComponents(),this.initStates(),this.initialized=!0}get componentElements(){return"STATE-CONTROLLER"===this.controller.tagName?Array.from(this.controller.parentNode.querySelectorAll(`:scope > .${this.controller.getAttribute("for")}`)):[this.controller]}get stateElements(){return Array.from(this.controller.querySelectorAll(":scope > state"))}initComponents(){this.components=this.componentElements.map(a=>new SauceComponent(a))}initStates(){this.states=this.stateElements.map((a,b)=>new SauceState({controller:this,element:a,index:b}))}cascadeState(a){this.initialized&&(this.unsetState(),this.invokeCallbackForState(a-1))}invokeCallbackForState(a){0>a||this.states[a].applyCascade()}setState(a){this.components.forEach(b=>b.setState(a))}unsetState(){this.components.forEach(a=>a.unsetState())}}class SauceState{constructor({controller:a,element:b,index:c}){this.controller=a,this.element=b,this.index=c,this.query,this.attach(),this.apply()}get media(){return this.element.getAttribute("media")}get value(){return this.element.getAttribute("value")}attach(){this.query=window.matchMedia(this.media),this.query.addListener(a=>this.callback(a,this))}apply(){this.callback(this.query,this)}applyCascade(){this.callback({matches:!0},this)}callback(a,b){return a.matches?void b.controller.setState(b.value):void b.controller.cascadeState(b.index)}}const stateControllers=document.querySelectorAll("[data-sauce-stateful-component], state-controller");for(const a of stateControllers)new SauceStateController(a);</textarea
-    >
   </body>
 </html>
