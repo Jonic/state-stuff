@@ -56,5 +56,43 @@
 
       Hello, World
     </div>
+
+    <h2>What is this?</h2>
+
+    <p>
+      For some initial context, read the discussion on
+      <a
+        href="https://github.com/RaspberryPiFoundation/sauce-design-system/issues/36"
+        >this Github issue</a
+      >.
+    </p>
+
+    <p>The component above has the following markup:</p>
+
+    <pre><code>&lt;div class="component-test" data-sauce-stateful-component&gt;
+  &lt;state media="(min-width: 500px)" value="red"&gt;&lt;/state&gt;
+  &lt;state media="(min-width: 700px)" value="blue"&gt;&lt;/state&gt;
+  &lt;state media="(min-width: 900px)" value="green"&gt;&lt;/state&gt;
+  &lt;state media="(min-width: 1100px)" value="green rounded"&gt;&lt;/state&gt;
+
+  Hello, World
+&lt;/div&gt;</code></pre>
+
+    <p>When resizing the browser window, the box should...</p>
+
+    <ol>
+      <li>have a grey border when min-width < 500px</li>
+      <li>have a red border when min-width >= 500px</li>
+      <li>have a blue border when min-width >= 700px</li>
+      <li>have a green border when min-width >= 900px</li>
+      <li>have a green, rounded border when min-width >= 1100px</li>
+    </ol>
+
+    <p>
+      To find out more about how this works, have a look at
+      <a href="https://github.com/Jonic/state-stuff"
+        >the repository's README file</a
+      >.
+    </p>
   </body>
 </html>
