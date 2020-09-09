@@ -56,19 +56,19 @@ When `(min-width: 900px)` no longer applies, the `data-sauce-state` will be casc
 If your page contains several instances of a component, and they all need to share the same state rules, you can set up a `state-controller` to target them:
 
 ```html
-<section>
-  <state-controller for="component-test">
-    <state media="(min-width: 500px)" value="horizontal"></state>
-    <state media="(min-width: 900px)" value="vertical"></state>
-  </state-controller>
+<state-controller for="component-test">
+  <state media="(min-width: 500px)" value="horizontal"></state>
+  <state media="(min-width: 900px)" value="vertical"></state>
+</state-controller>
 
-  <div class="component-test">...</div>
-  <div class="component-test">...</div>
-  <div class="component-test">...</div>
-</section>
+<div class="component-test">...</div>
+<div class="component-test">...</div>
+<div class="component-test">...</div>
 ```
 
 In this example, our `state-controller` will apply its `state` rules to any adjacent element with a selector matching its `for` attribute. Other than the elements it targets, it's functionally identical to the first example.
+
+Applying state to multiple components using a controller greatly reduces the number of `matchMedia` event listeners in use at once. In this example we have two, if we were to apply the same state rules on the components individually we'd have six. Add more components and states and you can see how things would become a burden on the browser.
 
 ## Where do the states come from?
 
@@ -98,9 +98,27 @@ Each element that requires a new state receives a single DOM manipulation to edi
 
 The browser does then have to repaint all the elements that have changed state, but it would have to do that if we matched a media query in the CSS anyway.
 
+## Can I use the CSS states without using this script?
+
+Absolutely. If you want a horizontal card, and for it to _always_ be horizontal, you can manually specify the state attribute:
+
+```html
+<div class="card" data-sauce-state="horizontal">... card contents ...</div>
+```
+
+We can also use this as a fallback for browsers that we don't support. SPEAKING OF WHICH:
+
+## What's the browser support?
+
+Basically not IE11. This is progressive enhancement, and at some point you have to draw a line about "support". However, given that the component styles are still controlled with plain CSS, the baseline experience offered to non-compatible browsers will be whatever default state we've set in the styles, or manually set in the markup.
+
+We need to clarify what we mean about "browser support", which will be tackled over in the Design System.
+
 ## This is scary
 
-I know. I'm scared, too. It's okay, we'll get through this together. The fact is, sometimes web development is scary, and you have to try new things. I'm confident that this system will work well for us, and I'm finding it hard to find drawbacks right now.
+I know. I'm scared, too. It's okay, we'll get through this together.
+
+The fact of the matter is, sometimes web development is scary, and you have to try new things. I'm confident that this system will work well for us, and I'm finding it hard to find drawbacks right now.
 
 There are of course a few things to consider and improve (see below), but the _technique_ seems to have legs. If we choose to adopt then we can plan out these improvements accordingly.
 
