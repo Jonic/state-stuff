@@ -42,6 +42,18 @@ state-controller {
   display: none;
 }
 
+textarea {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-color: darkgrey;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 1.6rem;
+  height: 20rem;
+  max-width: 60rem;
+  padding: 0.5rem 1rem;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1300px;
