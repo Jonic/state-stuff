@@ -144,23 +144,6 @@ Are we doing this? Why/why not?
 
 What is it? Where does all this live? How will it be documented?
 
-### Page Load
-
-How can we only apply the one state we need on page load? Currently it looks through each state and applies it if the media-query is a match. In our example above, if your browser window is over 1100px wide on load, this happens:
-
-1. Render default state (as if no JavaScript)
-2. `SauceComponent` kicks in.
-3. First state is applied, because min-width > 500px
-4. First state is removed, second state is applied, because min-width > 700px
-5. Second state is removed, third state is applied, because min-width > 900px
-6. Third state is removed, fourth state is applied, because min-width > 1100px
-
-What _should_ happen is this:
-
-1. Render default state (as if no JavaScript)
-2. `SauceComponent` kicks in.
-3. Fourth state is applied, because min-width > 1100px
-
 ### DOM Updates
 
 We’ll need to ensure that components are correctly handled when added to the DOM.

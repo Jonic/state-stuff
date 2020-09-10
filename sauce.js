@@ -18,16 +18,14 @@ class SauceComponent {
 
 class SauceStateController {
   constructor(controller) {
-    this.initialized = false;
-
-    this.components;
+    this.components = [];
     this.controller = controller;
-    this.states;
+    this.initialized = false;
+    this.states = [];
 
     this.initComponents();
     this.initStates();
-
-    this.initialized = true;
+    this.setInitialState();
   }
 
   get componentElements() {
@@ -68,10 +66,25 @@ class SauceStateController {
   invokeCallbackForState(index) {
     if (index < 0) return;
 
-    this.states[index].applyCascade();
+    this.states[index].forceApply();
+  }
+
+  setInitialState() {
+    const states = Array.from(this.states);
+
+    states.reverse().forEach((state) => {
+      if (this.initialized) {
+        return;
+      }
+
+      this.initialized = true;
+      state.forceApply();
+    });
   }
 
   setState(value) {
+    if (!this.initialized) return;
+
     this.components.forEach((component) => component.setState(value));
   }
 
@@ -85,7 +98,7 @@ class SauceState {
     this.controller = controller;
     this.element = element;
     this.index = index;
-    this.query;
+    this.query = null;
 
     this.attach();
     this.apply();
@@ -104,12 +117,15 @@ class SauceState {
     this.query.addListener((event) => this.callback(event, this));
   }
 
-  apply() {
-    this.callback(this.query, this);
-  }
+  apply(force = false) {
+    const state = this;
+    let event = this.query;
 
-  applyCascade() {
-    this.callback({ matches: true }, this);
+    if (force) {
+      event = { matches: true };
+    }
+
+    this.callback(event, state);
   }
 
   callback(event, state) {
@@ -119,6 +135,10 @@ class SauceState {
     }
 
     state.controller.cascadeState(state.index);
+  }
+
+  forceApply() {
+    this.apply(true);
   }
 }
 
