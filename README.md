@@ -178,6 +178,34 @@ We must ensure that the `state` elements don’t intefere with assisstive techno
 
 It’s also important that components are built with assisstive technologies in mind. The markup should be written with the component's content in mind, not any particular state that the component will be displayed in.
 
+### What about states we don't want to change?
+
+Components should allow an `data-sauce-immutable-state` definition. This is hard-coded in your components, and should never be aletered by JS.
+
+```css
+.sc-rp-card[data-sauce-state*="chunky-heading"],
+.sc-rp-card[data-sauce-immutable-state*="chunky-heading"] {
+  font-weight: bold;
+}
+```
+
+This styles could be streamlined with a Sass mixin:
+
+```sass
+@mixin state($name) {
+  &[data-sauce-state*="#{$name}"],
+  &[data-sauce-immutable-state*="#{$name}"] {
+    @content;
+  }
+}
+
+.sc-rp-card {
+  @include state('chunky-heading');
+}
+```
+
+The JavaScript wouldn't change at all, and would simply flat-out ignore the `data-sauce-immutable-state` attribute.
+
 ### How do our apps consume this?
 
 #### Vanilla
