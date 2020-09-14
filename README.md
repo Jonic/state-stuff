@@ -118,7 +118,15 @@ Absolutely. If you want a horizontal card, and for it to _always_ be horizontal,
 <div class="card" data-sauce-state="horizontal">... card contents ...</div>
 ```
 
-We can also use this as a fallback for browsers that we don't support. SPEAKING OF WHICH:
+Components will also have an optional "immutable state" (keep reading for more on that:
+
+```html
+<div class="card" data-sauce-immutable-state="horizontal">
+  ... card contents ...
+</div>
+```
+
+The default/immutable state will also act as a fallback for browsers that we don't support. SPEAKING OF WHICH:
 
 ## What's the browser support?
 
@@ -178,7 +186,7 @@ We must ensure that the `state` elements don’t intefere with assisstive techno
 
 It’s also important that components are built with assisstive technologies in mind. The markup should be written with the component's content in mind, not any particular state that the component will be displayed in.
 
-### What about states we don't want to change?
+### Immutable States
 
 Components should allow an `data-sauce-immutable-state` definition. This is hard-coded in your components, and should never be aletered by JS.
 
@@ -191,7 +199,7 @@ Components should allow an `data-sauce-immutable-state` definition. This is hard
 
 This styles could be streamlined with a Sass mixin:
 
-```sass
+```scss
 @mixin state($name) {
   &[data-sauce-state*="#{$name}"],
   &[data-sauce-immutable-state*="#{$name}"] {
@@ -200,7 +208,7 @@ This styles could be streamlined with a Sass mixin:
 }
 
 .sc-rp-card {
-  @include state('chunky-heading');
+  @include state("chunky-heading");
 }
 ```
 
