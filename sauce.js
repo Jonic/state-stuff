@@ -32,7 +32,7 @@ class SauceStateController {
     if (this.controller.tagName === "STATE-CONTROLLER") {
       return Array.from(
         this.controller.parentNode.querySelectorAll(
-          `:scope > .${this.controller.getAttribute("for")}`
+          `:scope ~ .${this.controller.getAttribute("for")}`
         )
       );
     }
