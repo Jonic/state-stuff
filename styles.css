@@ -12,7 +12,7 @@ body {
   background-color: #fff;
   color: #222;
   font-display: swap;
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-size: 1.8rem;
   font-variant-ligatures: none;
   font-weight: 400;
@@ -50,8 +50,8 @@ textarea {
   border-width: 1px;
   font-size: 1.6rem;
   height: 20rem;
-  max-width: 60rem;
   padding: 0.5rem 1rem;
+  width: 100%;
 }
 
 .container {
@@ -64,23 +64,23 @@ textarea {
   grid-gap: 2.4rem;
 }
 
-.sl-grid[data-sauce-state*="two-columns"] {
+.sl-grid[data-sauce-state*='two-columns'] {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.sl-grid[data-sauce-state*="three-columns"] {
+.sl-grid[data-sauce-state*='three-columns'] {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.sl-grid[data-sauce-state*="four-columns"] {
+.sl-grid[data-sauce-state*='four-columns'] {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.sl-grid[data-sauce-state*="five-columns"] {
+.sl-grid[data-sauce-state*='five-columns'] {
   grid-template-columns: repeat(5, 1fr);
 }
 
-.sl-grid[data-sauce-state*="six-columns"] {
+.sl-grid[data-sauce-state*='six-columns'] {
   grid-template-columns: repeat(6, 1fr);
 }
 
@@ -136,7 +136,7 @@ textarea {
 
 .sc-rp-card__link::after {
   bottom: 0;
-  content: " ";
+  content: ' ';
   display: block;
   left: 0;
   position: absolute;
@@ -160,7 +160,7 @@ textarea {
   width: 100%;
 }
 
-.sc-rp-card[data-sauce-state*="horizontal"] {
+.sc-rp-card[data-sauce-state*='horizontal'] {
   flex-direction: row-reverse;
   max-width: 100%;
 }
@@ -184,18 +184,18 @@ textarea {
   padding: 1rem;
 }
 
-.component-test[data-sauce-state*="red"] {
+.component-test[data-sauce-state*='red'] {
   --border-color: red;
 }
 
-.component-test[data-sauce-state*="blue"] {
+.component-test[data-sauce-state*='blue'] {
   --border-color: blue;
 }
 
-.component-test[data-sauce-state*="green"] {
+.component-test[data-sauce-state*='green'] {
   --border-color: green;
 }
 
-.component-test[data-sauce-state*="rounded"] {
+.component-test[data-sauce-state*='rounded'] {
   --border-radius: 1rem;
 }
